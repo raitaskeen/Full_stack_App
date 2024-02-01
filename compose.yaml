@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    container_name: db
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  web:
+    image: nginx:alpine     
+    ports:
+      - 5432:5432
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+volumes:
+  pgdata: {}
